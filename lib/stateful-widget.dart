@@ -27,14 +27,49 @@ class TutorialHome extends StatelessWidget {
             )
           ],
         ),
-        body: Center(
-          child: Text('Hello, world!'),
-        ),
+        body: Counter(),
         floatingActionButton: FloatingActionButton(
             tooltip: 'Add',
             child: Icon(Icons.add),
             onPressed: null
         )
+    );
+  }
+}
+
+class Counter extends StatefulWidget {
+  // This class is the configuration for the state. It holds the
+  // values (in this case nothing) provided by the parent and used by the build
+  // method of the state. Fields in a Widget subclass are always marked "final"
+
+  @override
+  _CounterState createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
+  int _counter = 0;
+
+  void _increment() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something
+      // has changed in this State, which causes it to rerun the build
+      // method below so that the display can reflect the updated values.
+      // If you change _counter without calling setState(), then the build
+      // method won't be called again and so nothing would appear to happen
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        RaisedButton(
+          onPressed: _increment,
+          child: Text('Increment')
+        ),
+        Text('Count: $_counter')
+      ],
     );
   }
 
